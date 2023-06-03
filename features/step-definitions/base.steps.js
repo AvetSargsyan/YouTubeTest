@@ -25,6 +25,10 @@ Then(/^Check redirecting to "([^"]*)" page$/, async (url) => {
     await expect(browser).toHaveUrl(url);
 });
 
-// Then(/^Check "([^"]*)" is logged in$/, async (url) => {
-//     await expect(browser).toHaveUrl(url);
-// });
+Then(/^Check "([^"]*)" is logged in$/, async (url) => {
+    await expect(browser).toHaveUrl(url);
+});
+
+Then(/^Check "([^"]*)" is set in "([^"]*)"$/, async (mail, fieldName) => {
+    await expect(basePage.checkItem(fieldName)).toHaveText(mail);
+});

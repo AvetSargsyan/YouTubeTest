@@ -1,5 +1,3 @@
-// import { DATA } from "../data/constants";
-
 export default class BasePage {
     #guideButton = 'button[aria-label="Guide"]';
     #logoIcon = 'ytd-topbar-logo-renderer[id="logo"]';
@@ -13,7 +11,7 @@ export default class BasePage {
         'sign in': '//a[@aria-label="Sign in"]',
         'Next': '//span[@jsname="V67aGc" and text()="Next"]',
         'profile': 'button#avatar-btn',
-        'email': 'yt-formatted-string#email'
+        'email_field': 'yt-formatted-string#email'
     };
 
     async checkItem(name) {
@@ -26,11 +24,10 @@ export default class BasePage {
 
     async getText(name) {
         return await $(this.itemsLocators[name]).getText();
-    }
+    };
 
     open(url) {
         return browser.url(url);
     };
-
-}
+};
 

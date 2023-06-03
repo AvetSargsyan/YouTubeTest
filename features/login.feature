@@ -24,7 +24,7 @@ Feature: The YouTube test
     #Home page
     Then Check redirecting to <url> page
     When Click "profile" button
-    Then Check <userEmail> is logged in
+    Then Check <userEmail> is set in "email_field"
 
     Examples:
     | url                        | userEmail           | password   |
