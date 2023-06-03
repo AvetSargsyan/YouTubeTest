@@ -9,20 +9,23 @@ export default class BasePage {
     #guideMenu = 'tp-yt-app-drawer#guide';
     #historyButton = 'a[title="History"]';
 
-    buttonsLocators = {
+    itemsLocators = {
         'sign in': '//a[@aria-label="Sign in"]',
+        'Next': '//span[@jsname="V67aGc" and text()="Next"]',
+        'profile': 'button#avatar-btn',
+        'email': 'yt-formatted-string#email'
     };
 
-    checkButton(buttonName) {
-        return $(this.buttonsLocators[buttonName]);
+    async checkItem(name) {
+        return await $(this.itemsLocators[name]);
     };
 
-    clickButton(buttonName) {
-        return $(this.buttonsLocators[buttonName]).click();
+    async clickButton(buttonName) {
+        return await $(this.itemsLocators[buttonName]).click();
     };
 
-    getText(locator) {
-        return $(locator).getText();
+    async getText(name) {
+        return await $(this.itemsLocators[name]).getText();
     }
 
     open(url) {

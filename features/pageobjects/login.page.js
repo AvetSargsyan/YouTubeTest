@@ -9,17 +9,16 @@ export default class LoginPage extends BasePage {
     #emailAddress = 'data-profile-identifier';
 
     itemsLocators = {
-        'Sign in': '#headingText span',
+        'sign in': '#headingText span',
         'email': this.#input('email'),
         'password': this.#input('password'),
-        'Next': '//span[@jsname="V67aGc" and text()="Next"]',
-        'set_email': 'div[jsname="bQIQze"]',
+        'profileIdentifier': 'div[jsname="bQIQze"]',
     };
 
-    input(inputName) {
+    async getInput(inputName) {
         console.log('########################', inputName)
 
-        return $(this.#input(inputName));
+        return await $(this.#input(inputName));
     };
 
     setValue(text, inputField) {
@@ -30,8 +29,11 @@ export default class LoginPage extends BasePage {
         };
     };
 
-    clickButton(buttonName) {
-        return $(this.itemsLocators[buttonName]).click();
+    async profileIdentifiersText() {
+        return await $(this.itemsLocators.profileIdentifier);
     }
 
+    // clickButton(buttonName) {
+    //     return $(this.itemsLocators[buttonName]).click();
+    // };
 };
