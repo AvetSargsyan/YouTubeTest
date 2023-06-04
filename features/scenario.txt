@@ -15,18 +15,16 @@ Login page test
 11. Check that logged user is correct
 
 Header test
-
 1. Check in header logo is displayed
 2. Check in header burger menu button is displayed
 3. Check in header Search input is displayed
 4. Check the search input has search button
 5. Check the microphone button is exist
 6. Check the create button is exist
-
 7. Check the notification button is exist 
-Contents Test
 
-1. Check contents is exist
+Contents Test
+1. Check contents is exist (displayed)
 2. Check the video has title
 3. Video should be clickable
 4. Video should has hover on itself

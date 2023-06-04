@@ -7,8 +7,9 @@ Then(/^Check "([^"]*)" page is open$/, async (pageTitle) => {
     await expect(loginPage.checkItem(pageTitle)).toBeDisplayed();
 });
 
-Then(/^Check "([^"]*)" input is exist$/, async (inputName) => {
-    await expect(loginPage.getInput(inputName)).toExist();
+Then(/^Check "([^"]*)" is exist$/, async (itemName) => {
+    await console.log('#######################################', await loginPage.checkItem(itemName))
+    await expect(loginPage.checkItem(itemName)).toExist();
 });
 
 When(/^Type "([^"]*)" into "([^"]*)" input$/, async (text, inputField) => {

@@ -9,11 +9,11 @@ Given(/^Open "([^"]*)" page$/, async (url) => {
     await expect(browser).toHaveUrl(url)
 });
 
-Then(/^Check "([^"]*)" button is displayed$/, async (buttonName) => {
+Then(/^Check "([^"]*)" is displayed$/, async (buttonName) => {
     await expect(basePage.checkItem(buttonName)).toBeDisplayed();
 });
 
-Then(/^Check "([^"]*)" button is clickable$/, async (buttonName) => {
+Then(/^Check "([^"]*)" is clickable$/, async (buttonName) => {
     await expect(basePage.checkItem(buttonName)).toBeClickable();
 });
 
@@ -31,4 +31,12 @@ Then(/^Check "([^"]*)" is logged in$/, async (url) => {
 
 Then(/^Check "([^"]*)" is set in "([^"]*)"$/, async (mail, fieldName) => {
     await expect(basePage.checkItem(fieldName)).toHaveText(mail);
+});
+
+Then(/^Check "([^"]*)" is displayed in "([^"]*)"$/, async (itemName, containerName) => {
+    await expect(basePage.checkItem(containerName)).toHaveChildren(basePage.checkItem(itemName));
+});
+
+Then(/^Check "([^"]*)" content is exist$/, async (contentName) => {
+    await expect(basePage.checkItem(contentName)).toExist()
 });
