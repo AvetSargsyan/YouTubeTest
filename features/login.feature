@@ -51,5 +51,11 @@ Feature: The YouTube test with Cucumber + WebdriverIO
             And Check "liked_videos_label" is displayed in "guide_bar"
 
     Scenario: Video content's test
-        Then Check "video_contents" content is exist
+        Then Check "video_content" content is exist
+        When Click "guide_menu_icon" button 
+        Then Check "video_title" is displayed
             And Check "video_title" is displayed
+            And Check "any_video" is clickable
+            And Check "shorts_content" is displayed
+            And Check "shorts_title" is displayed
+            And Check "contents_header" is displayed

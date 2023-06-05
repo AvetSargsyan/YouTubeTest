@@ -31,9 +31,13 @@ export default class BasePage {
         'history_label': this.#label('History'),
         'watch_later_label': this.#label('Watch later'),
         'liked_videos_label': this.#label('Liked videos'),
-        'video_contents': this.#video(''),
-        'video_title': this.#video('title')
-
+        'video_content': 'div[class="style-scope ytd-rich-grid-renderer"][id="contents"]',
+        'any_video': this.#video(''),
+        'video_title': this.#video('title'),
+        'video_hover': `${this.#video('')}//div[@id="hover-overlays"]`,
+        'shorts_content': 'div[class^="style-scope ytd-rich-section"]',
+        'shorts_title': '//span[text()="Shorts" and @id="title"]',
+        'contents_header': 'div[id="chips-wrapper"]',
     };
 
     async checkItem(name) {
@@ -41,7 +45,7 @@ export default class BasePage {
     };
 
     async clickButton(buttonName) {
-        return await $(this.itemsLocators[buttonName]).click();
+        return await $(this.itemsLocators[buttonName]).click({ force: true });
     };
 
     async getText(name) {

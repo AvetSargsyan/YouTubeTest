@@ -8,7 +8,8 @@ Then(/^Check "([^"]*)" page is open$/, async (pageTitle) => {
 });
 
 Then(/^Check "([^"]*)" is exist$/, async (itemName) => {
-    await console.log('#######################################', await loginPage.checkItem(itemName))
+    await console.log('#######################################', await loginPage.checkItem(itemName));
+
     await expect(loginPage.checkItem(itemName)).toExist();
 });
 

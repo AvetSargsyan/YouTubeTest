@@ -24,10 +24,10 @@ Header test
 7. Check the notification button is exist 
 
 Contents Test
-1. Check contents is exist (displayed)
+1. Check contents is exist   (displayed)
 2. Check the video has title
 3. Video should be clickable
-4. Video should has hover on itself
-5. In the home page should be displayed shots content
+4. Video should has hover on itself   (unstable)
+5. In the home page should be displayed shorts content
 6. Short content should has own tittle
 7. Check Inside the short contents any video is clickable
