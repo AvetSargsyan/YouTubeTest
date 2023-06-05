@@ -59,3 +59,8 @@ Feature: The YouTube test with Cucumber + WebdriverIO
             And Check "shorts_content" is displayed
             And Check "shorts_title" is displayed
             And Check "contents_header" is displayed
+            And Check "contents_all_label" is displayed
+            And Check "contents_gaming_label" is displayed
+            And Check "contents_music_label" is displayed
+            And Check "contents_live_label" is displayed
+            

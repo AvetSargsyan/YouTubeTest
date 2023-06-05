@@ -9,6 +9,15 @@ export default class BasePage {
 
         return locator;
     };
+    #content_page_header = (property) => {
+        let locator = `div[id="chips-wrapper"]`;
+
+        if (property !== '') {
+            locator += ` [title="${property}"]`;
+        };
+
+        return locator;
+    }
 
     itemsLocators = {
         'sign in': '//a[@aria-label="Sign in"]',
@@ -37,7 +46,11 @@ export default class BasePage {
         'video_hover': `${this.#video('')}//div[@id="hover-overlays"]`,
         'shorts_content': 'div[class^="style-scope ytd-rich-section"]',
         'shorts_title': '//span[text()="Shorts" and @id="title"]',
-        'contents_header': 'div[id="chips-wrapper"]',
+        'contents_header': this.#content_page_header(''),
+        'contents_all_label' : this.#content_page_header('All'),
+        'contents_gaming_label' : this.#content_page_header('Gaming'),
+        'contents_music_label' : this.#content_page_header('Music'),
+        'contents_live_label' : this.#content_page_header('Live'),
     };
 
     async checkItem(name) {
