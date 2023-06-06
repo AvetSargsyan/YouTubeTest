@@ -9,9 +9,18 @@ export default class BasePage {
 
         return locator;
     };
+    #url = (name) => {
+        let url = 'https://www.youtube.com/';
+
+        if (name !== '') {
+            url += name
+        };
+
+        return url;
+    };
 
     itemsLocators = {
-        'sign in': '//a[@aria-label="Sign in"]',
+        'sign_in': '//a[@aria-label="Sign in"]',
         'Next': '//span[@jsname="V67aGc" and text()="Next"]',
         'header': 'div[class="style-scope ytd-masthead"][id="container"]',
         'guide_menu_icon': 'button[aria-label="Guide"]',
@@ -38,6 +47,9 @@ export default class BasePage {
         'shorts_content': 'div[class^="style-scope ytd-rich-section"]',
         'shorts_title': '//span[text()="Shorts" and @id="title"]',
         'contents_header': 'div[id="chips-wrapper"]',
+        'youtube': this.#url(''),
+        'video': this.#url('watch?'),
+        'history': this.#url('feed/history'),
     };
 
     async checkItem(name) {
@@ -50,6 +62,11 @@ export default class BasePage {
 
     async getText(name) {
         return await $(this.itemsLocators[name]).getText();
+    };
+
+    getUrl(name) {
+        console.log('###########################', this.itemsLocators[name]);
+        return this.itemsLocators[name];
     };
 
     open(url) {

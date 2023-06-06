@@ -13,11 +13,15 @@ Then(/^Check "([^"]*)" is displayed$/, async (buttonName) => {
     await expect(basePage.checkItem(buttonName)).toBeDisplayed();
 });
 
+// Then(/^Check "([^"]*)" is exist$/, async (itemName) => {
+//     await expect(basePage.checkItem(itemName)).toExist();
+// });
+
 Then(/^Check "([^"]*)" is clickable$/, async (buttonName) => {
     await expect(basePage.checkItem(buttonName)).toBeClickable();
 });
 
-When(/^Click "([^"]*)" button$/, async (buttonName) => {
+When(/^Click on "([^"]*)" button$/, async (buttonName) => {
     await basePage.clickButton(buttonName);
 });
 
@@ -37,6 +41,22 @@ Then(/^Check "([^"]*)" is displayed in "([^"]*)"$/, async (itemName, containerNa
     await expect(basePage.checkItem(containerName)).toHaveChildren(basePage.checkItem(itemName));
 });
 
-Then(/^Check "([^"]*)" content is exist$/, async (contentName) => {
-    await expect(basePage.checkItem(contentName)).toExist()
+When(/^Click on "([^"]*)" video$/, async (buttonName) => {
+    await basePage.clickButton(buttonName);
 });
+
+Then(/^Check "([^"]*)" page is open$/, async (name) => {
+    await expect(browser).toHaveUrlContaining(basePage.getUrl(name));
+});
+
+When(/^Maximize window$/, async () => {
+    await browser.maximizeWindow();
+});
+
+
+
+// test
+// When(/^Click on "([^"]*)" button test$/, async (buttonName) => {
+//     await browser.pause(15000)
+//     await basePage.clickButton(buttonName);
+// });
