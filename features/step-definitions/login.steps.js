@@ -7,7 +7,7 @@ Then(/^Check "([^"]*)" is exist$/, async (itemName) => {
     await expect(loginPage.checkItem(itemName)).toExist();
 });
 
-When(/^Type "([^"]*)" into "([^"]*)" input$/, async (text, inputField) => {
+When(/^Type "([^"]*)" into "([^"]*)" input$/, async (text, inputField) => { 
     await loginPage.setValue(text, inputField);
 });
 
