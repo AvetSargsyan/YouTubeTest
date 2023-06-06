@@ -6,7 +6,7 @@ Feature: The YouTube test with Cucumber + WebdriverIO
         When Maximize window
         Then Check "sign_in" is displayed
             And Check "sign_in" is clickable
-        When Click on "sign_in" button
+        When Click on "sign_in" button in "base_page"
 
         #Login page
         Then Check "sign_in" is exist
@@ -14,18 +14,18 @@ Feature: The YouTube test with Cucumber + WebdriverIO
         When Type <userEmail> into "email_input" input
         Then Check "Next" is displayed
             And Check "Next" is clickable
-        When Click on "Next" button
+        When Click on "Next" button in "login_page"
         Then Check <userEmail> to be correct
             And Check "password_input" is exist
         When Type <password> into "password_input" input
         Then Check "Next" is displayed
             And Check "Next" is clickable
-        When Click on "Next" button
+        When Click on "Next" button in "login_page"
 
         #Home page
         Then Check redirecting to <url> page
         When Maximize window
-        When Click on "profile" button
+        When Click on "profile" button in "base_page"
         Then Check <userEmail> is set in "email_field"
 
         Examples:
@@ -42,7 +42,7 @@ Feature: The YouTube test with Cucumber + WebdriverIO
             And Check "create_button" is displayed in "header"
             And Check "notifications_button" is displayed in "header"
             And Check "profile" is displayed in "header"
-        When Click on "guide_menu_icon" button
+        When Click on "guide_menu_icon" button in "base_page"
         Then Check "home_label" is displayed in "guide_bar"
             And Check "shorts_label" is displayed in "guide_bar"
             And Check "subscriptions_label" is displayed in "guide_bar"
@@ -53,7 +53,7 @@ Feature: The YouTube test with Cucumber + WebdriverIO
 
     Scenario: Video content's test
         Then Check "video_content" is displayed
-        When Click on "guide_menu_icon" button 
+        When Click on "guide_menu_icon" button in "base_page"
         Then Check "video_title" is displayed
             And Check "video_title" is displayed
             And Check "contents_header" is displayed
@@ -62,9 +62,9 @@ Feature: The YouTube test with Cucumber + WebdriverIO
 
         #Video page
         Then Check "video" page is open
-        When Click on "guide_menu_icon" button
+        When Click on "guide_menu_icon" button in "base_page"
         Then Check "history_label" is displayed in "guide_bar"
-        When Click on "history_label" button
+        When Click on "history_label" button in "base_page"
 
         #History page
         Then Check "history" page is open

@@ -1,7 +1,9 @@
 import { Given, When, Then } from '@wdio/cucumber-framework'
 import BasePage from '../pageobjects/base.page.js';
+import LoginPage from '../pageobjects/login.page.js';
 
 const basePage = new BasePage();
+const loginPage = new BasePage();
 
 Given(/^Open "([^"]*)" page$/, async (url) => {
     await basePage.open(url);
@@ -21,8 +23,16 @@ Then(/^Check "([^"]*)" is clickable$/, async (buttonName) => {
     await expect(basePage.checkItem(buttonName)).toBeClickable();
 });
 
-When(/^Click on "([^"]*)" button$/, async (buttonName) => {
-    await basePage.clickButton(buttonName);
+When(/^Click on "([^"]*)" button in "([^"]*)"$/, async (buttonName, pageName) => {
+    switch (pageName) {
+        case 'base_page':
+            await basePage.clickButton(buttonName);
+            break;
+        case 'login_page':
+            await loginPage.clickButton(buttonName);
+            break;
+    }
+
 });
 
 Then(/^Check redirecting to "([^"]*)" page$/, async (url) => {
