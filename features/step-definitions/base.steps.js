@@ -1,9 +1,11 @@
 import { Given, When, Then } from '@wdio/cucumber-framework'
 import BasePage from '../pageobjects/base.page.js';
 import LoginPage from '../pageobjects/login.page.js';
+import BasicActions from '../helpers/basic_actions.js';
 
 const basePage = new BasePage();
 const loginPage = new BasePage();
+const basicActions = new BasicActions()
 
 Given(/^Open "([^"]*)" page$/, async (url) => {
     await basePage.open(url);
@@ -11,52 +13,36 @@ Given(/^Open "([^"]*)" page$/, async (url) => {
     await expect(browser).toHaveUrl(url)
 });
 
-Then(/^Check "([^"]*)" is displayed$/, async (buttonName) => {
-    await expect(basePage.checkItem(buttonName)).toBeDisplayed();
+Then(/^Check "([^"]*)" is displayed in "([^"]*)"$/, async (buttonName, pageName) => {
+    await basicActions.checkForDisplayability(buttonName, pageName)
 });
 
-// Then(/^Check "([^"]*)" is exist$/, async (itemName) => {
-//     await expect(basePage.checkItem(itemName)).toExist();
-// });
+Then(/^Check "([^"]*)" is exist in "([^"]*)"$/, async (itemName, pageName) => {
+    await basicActions.checkForExistence(itemName, pageName)
+});
 
-Then(/^Check "([^"]*)" is clickable$/, async (buttonName) => {
-    await expect(basePage.checkItem(buttonName)).toBeClickable();
+Then(/^Check "([^"]*)" is clickable in "([^"]*)"$/, async (buttonName, pageName) => {
+    await basicActions.checkForClickability(buttonName, pageName);
 });
 
 When(/^Click on "([^"]*)" button in "([^"]*)"$/, async (buttonName, pageName) => {
-    switch (pageName) {
-        case 'base_page':
-            await basePage.clickButton(buttonName);
-            break;
-        case 'login_page':
-            await loginPage.clickButton(buttonName);
-            break;
-    }
-
-});
-
-Then(/^Check redirecting to "([^"]*)" page$/, async (url) => {
-    await expect(browser).toHaveUrl(url);
-});
-
-Then(/^Check "([^"]*)" is logged in$/, async (url) => {
-    await expect(browser).toHaveUrl(url);
+    await basicActions.clickOnButton(buttonName, pageName)
 });
 
 Then(/^Check "([^"]*)" is set in "([^"]*)"$/, async (mail, fieldName) => {
     await expect(basePage.checkItem(fieldName)).toHaveText(mail);
 });
 
-Then(/^Check "([^"]*)" is displayed in "([^"]*)"$/, async (itemName, containerName) => {
+Then(/^Check "([^"]*)" to be child of "([^"]*)"$/, async (itemName, containerName) => {
     await expect(basePage.checkItem(containerName)).toHaveChildren(basePage.checkItem(itemName));
 });
 
-When(/^Click on "([^"]*)" video$/, async (buttonName) => {
+When(/^Click on "([^"]*)" video in "([^"]*)"$/, async (buttonName, pageName) => {
     await basePage.clickButton(buttonName);
 });
 
-Then(/^Check "([^"]*)" page is open$/, async (name) => {
-    await expect(browser).toHaveUrlContaining(basePage.getUrl(name));
+Then(/^Check "([^"]*)" page is open$/, async (pageName) => {
+    await basicActions.checkThatPageIsOpen(pageName)
 });
 
 When(/^Maximize window$/, async () => {
@@ -65,8 +51,9 @@ When(/^Maximize window$/, async () => {
 
 
 
-// test
-// When(/^Click on "([^"]*)" button test$/, async (buttonName) => {
-//     await browser.pause(15000)
-//     await basePage.clickButton(buttonName);
-// });
+// test pause
+When(/^pause$/, async () => {
+    await browser.pause(20000);
+
+    browser.acceptAlert()
+});

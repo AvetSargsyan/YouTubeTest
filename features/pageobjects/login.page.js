@@ -4,6 +4,7 @@ export default class LoginPage extends BasePage {
     #input = (inputName) => `input[type =${inputName}]`;
 
     itemsLocators = {
+        'Next': '//span[@jsname="V67aGc" and text()="Next"]',
         'sign_in': '#headingText span',
         'email_input': this.#input('email'),
         'password_input': this.#input('password'),

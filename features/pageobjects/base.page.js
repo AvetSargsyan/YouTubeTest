@@ -21,7 +21,6 @@ export default class BasePage {
 
     itemsLocators = {
         'sign_in': '//a[@aria-label="Sign in"]',
-        'Next': '//span[@jsname="V67aGc" and text()="Next"]',
         'header': 'div[class="style-scope ytd-masthead"][id="container"]',
         'guide_menu_icon': 'button[aria-label="Guide"]',
         'profile': 'button#avatar-btn',
@@ -65,7 +64,6 @@ export default class BasePage {
     };
 
     getUrl(name) {
-        console.log('###########################', this.itemsLocators[name]);
         return this.itemsLocators[name];
     };
 
