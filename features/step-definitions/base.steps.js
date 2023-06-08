@@ -49,8 +49,8 @@ When(/^Click on "([^"]*)" button in "([^"]*)" page$/, async (buttonName, pageNam
     await basicActions.getPageObject(pageName).clickButton(buttonName)
 });
 
-Then(/^Check "([^"]*)" is set in "([^"]*)" field$/, async (mail, fieldName) => {
-    await expect(basePage.checkItem(fieldName)).toHaveText(mail);
+Then(/^Check "([^"]*)" is set in "([^"]*)" field in "([^"]*)" page$/, async (mail, fieldName, pageName) => {
+    await expect(basicActions.getPageObject(pageName).checkItem(fieldName)).toHaveText(mail);
 });
 
 Then(/^Check "([^"]*)" icon to be child of "([^"]*)" content$/, async (itemName, containerName) => {
@@ -79,13 +79,4 @@ Then(/^Check "([^"]*)" page is open$/, async (pageName) => {
 
 When(/^Maximize window$/, async () => {
     await browser.maximizeWindow();
-});
-
-
-
-// test pause
-When(/^pause$/, async () => {
-    await browser.pause(20000);
-
-    browser.acceptAlert()
 });

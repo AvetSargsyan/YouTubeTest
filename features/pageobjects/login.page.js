@@ -4,11 +4,11 @@ export default class LoginPage extends BasePage {
     #input = (inputName) => `input[type =${inputName}]`;
 
     itemsLocators = {
-        'Next': '//span[@jsname="V67aGc" and text()="Next"]',
+        'next': '//span[@jsname="V67aGc" and text()="Next"]',
         'signIn': '#headingText span',
         'email': this.#input('email'),
         'password': this.#input('password'),
-        'profileIdentifier': 'div[jsname="bQIQze"]',
+        'profileidentifier': 'div[jsname="bQIQze"]',
     };
 
     async getInput(inputName) {
@@ -21,9 +21,5 @@ export default class LoginPage extends BasePage {
         } else if (inputField === 'password') {
             return await $(this.#input('password')).setValue(text);
         };
-    };
-
-    async profileIdentifiersText() {
-        return await $(this.itemsLocators.profileIdentifier);
     };
 };

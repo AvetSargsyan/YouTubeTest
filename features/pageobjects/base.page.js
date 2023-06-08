@@ -1,5 +1,6 @@
 export default class BasePage {
     #label = title => `a[title="${title}"][role]`;
+    #button = name => `button[aria-label="${name}"]`;
     #video = (property) => {
         let locator = `//div[@id="content"][@class="style-scope ytd-rich-item-renderer"][1]`;
 
@@ -22,30 +23,28 @@ export default class BasePage {
     itemsLocators = {
         'signIn': '//a[@aria-label="Sign in"]',
         'header': 'div[class="style-scope ytd-masthead"][id="container"]',
-        'guideMenu': 'button[aria-label="Guide"]',
+        'guideMenu': this.#button('Guide'),
         'profile': 'button#avatar-btn',
         'shownEmail': 'yt-formatted-string#email',
         'logo': 'ytd-topbar-logo-renderer[id="logo"]',
-        'search': 'input[id="search"]',
-        'Search': 'button#search-icon-legacy',
-        'SearchWithVoice': 'button[aria-label="Search with your voice"]',
-        'Create': 'button[aria-label="Create"]',
-        'Notifications': 'button[aria-label="Guide"]',
+        'searchByText': 'input[id="search"]',
+        'search': 'button#search-icon-legacy',
+        'searchWithVoice': this.#button('Search with your voice'),
+        'create': this.#button('Create'),
+        'notifications': this.#button('Notifications'),
         'guide': 'tp-yt-app-drawer#guide',
-        'Home': this.#label('Home'),
-        'Shorts': this.#label('Shorts'),
-        'Subscriptions': this.#label('Subscriptions'),
-        'Library': this.#label('Library'),
-        'History': this.#label('History'),
-        'WatchLater': this.#label('Watch later'),
-        'LikedVideos': this.#label('Liked videos'),
+        'home': this.#label('Home'),
+        'shorts': this.#label('Shorts'),
+        'subscriptions': this.#label('Subscriptions'),
+        'library': this.#label('Library'),
+        'history': this.#label('History'),
+        'watchLater': this.#label('Watch later'),
+        'likedVideos': this.#label('Liked videos'),
         'videos': 'div[class="style-scope ytd-rich-grid-renderer"][id="contents"]',
         'firstVideo': this.#video('title'),
-        'shorts': 'div[class^="style-scope ytd-rich-section"]',  // no use
         'videoContentsHeader': 'div[id="chips-wrapper"]',
         'youtube': this.#url(''),
         'choosedVideo': this.#url('watch?'),
-        'history': this.#url('feed/history'),
     };
 
     async checkItem(name) {
@@ -53,8 +52,6 @@ export default class BasePage {
     };
 
     async clickButton(buttonName) {
-        await $(this.itemsLocators[buttonName]).moveTo();
-
         return await $(this.itemsLocators[buttonName]).click({ force: true });
     };
 

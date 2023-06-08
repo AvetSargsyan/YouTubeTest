@@ -9,10 +9,6 @@ When(/^Type "([^"]*)" into "([^"]*)" input$/, async (text, inputField) => {
     await loginPage.setValue(text, inputField);
 });
 
-Then(/^Check "([^"]*)" to be correct$/, async (mail) => {
-    await expect(loginPage.profileIdentifiersText()).toHaveText(mail);
-});
-
 Then(/^Check "([^"]*)" input is displayed in "([^"]*)" page$/, async (itemName, pageName) => {
     await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeDisplayed();
 });
