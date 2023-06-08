@@ -17,24 +17,4 @@ export default class BasicActions {
                 return historyPage;
         };
     };
-
-    async clickOnButton(buttonName, pageName) {
-        await this.getPageObject(pageName).clickButton(buttonName);
-    };
-
-    async checkForDisplayability(itemName, pageName) {
-        await expect(this.getPageObject(pageName).checkItem(itemName)).toBeDisplayed();
-    };
-
-    async checkForClickability(itemName, pageName) {
-        await expect(this.getPageObject(pageName).checkItem(itemName)).toBeClickable();
-    };
-
-    async checkForExistence(itemName, pageName) {
-        await expect(this.getPageObject(pageName).checkItem(itemName)).toExist();
-    };
-
-    async checkThatPageIsOpen(pageName) {
-        await expect(browser).toHaveUrlContaining(basePage.getUrl(pageName));
-    }
 };

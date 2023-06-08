@@ -13,40 +13,40 @@ Given(/^Open "([^"]*)" page$/, async (url) => {
     await expect(browser).toHaveUrl(url)
 });
 
-Then(/^Check "([^"]*)" title is displayed in "([^"]*)" page$/, async (buttonName, pageName) => {
-    await basicActions.checkForDisplayability(buttonName, pageName)
+Then(/^Check "([^"]*)" title is displayed in "([^"]*)" page$/, async (itemName, pageName) => {
+    await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeDisplayed();
 });
 
-Then(/^Check "([^"]*)" text is displayed in "([^"]*)" page$/, async (buttonName, pageName) => {
-    await basicActions.checkForDisplayability(buttonName, pageName)
+Then(/^Check "([^"]*)" text is displayed in "([^"]*)" page$/, async (itemName, pageName) => {
+    await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeDisplayed();
 });
 
-Then(/^Check "([^"]*)" button is displayed in "([^"]*)" page$/, async (buttonName, pageName) => {
-    await basicActions.checkForDisplayability(buttonName, pageName)
+Then(/^Check "([^"]*)" button is displayed in "([^"]*)" page$/, async (itemName, pageName) => {
+    await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeDisplayed();
 });
 
-Then(/^Check "([^"]*)" content is displayed in "([^"]*)" page$/, async (buttonName, pageName) => {
-    await basicActions.checkForDisplayability(buttonName, pageName)
+Then(/^Check "([^"]*)" content is displayed in "([^"]*)" page$/, async (itemName, pageName) => {
+    await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeDisplayed();
 });
 
-Then(/^Check "([^"]*)" video is displayed in "([^"]*)" page$/, async (buttonName, pageName) => { //History page
-    await basicActions.checkForDisplayability(buttonName, pageName)
+Then(/^Check "([^"]*)" video is displayed in "([^"]*)" page$/, async (itemName, pageName) => { //History page
+    await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeDisplayed();
 });
 
 Then(/^Check "([^"]*)" is exist in "([^"]*)" page$/, async (itemName, pageName) => {
-    await basicActions.checkForExistence(itemName, pageName)
+    await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toExist();
 });
 
-Then(/^Check "([^"]*)" video is clickable in "([^"]*)" page$/, async (buttonName, pageName) => {
-    await basicActions.checkForClickability(buttonName, pageName);
+Then(/^Check "([^"]*)" video is clickable in "([^"]*)" page$/, async (itemName, pageName) => {
+    await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeClickable();
 });
 
-Then(/^Check "([^"]*)" button is clickable in "([^"]*)" page$/, async (buttonName, pageName) => {
-    await basicActions.checkForClickability(buttonName, pageName);
+Then(/^Check "([^"]*)" button is clickable in "([^"]*)" page$/, async (itemName, pageName) => {
+    await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeClickable();
 });
 
 When(/^Click on "([^"]*)" button in "([^"]*)" page$/, async (buttonName, pageName) => {
-    await basicActions.clickOnButton(buttonName, pageName)
+    await basicActions.getPageObject(pageName).clickButton(buttonName)
 });
 
 Then(/^Check "([^"]*)" is set in "([^"]*)" field$/, async (mail, fieldName) => {
@@ -74,7 +74,7 @@ When(/^Click on "([^"]*)" video in "([^"]*)" page$/, async (buttonName, pageName
 });
 
 Then(/^Check "([^"]*)" page is open$/, async (pageName) => {
-    await basicActions.checkThatPageIsOpen(pageName)
+    await expect(browser).toHaveUrlContaining(basePage.getUrl(pageName));
 });
 
 When(/^Maximize window$/, async () => {

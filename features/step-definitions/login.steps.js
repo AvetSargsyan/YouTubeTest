@@ -13,6 +13,6 @@ Then(/^Check "([^"]*)" to be correct$/, async (mail) => {
     await expect(loginPage.profileIdentifiersText()).toHaveText(mail);
 });
 
-Then(/^Check "([^"]*)" input is displayed in "([^"]*)" page$/, async (buttonName, pageName) => {
-    await basicActions.checkForDisplayability(buttonName, pageName)
+Then(/^Check "([^"]*)" input is displayed in "([^"]*)" page$/, async (itemName, pageName) => {
+    await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeDisplayed();
 });
