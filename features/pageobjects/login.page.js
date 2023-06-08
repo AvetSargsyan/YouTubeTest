@@ -5,9 +5,9 @@ export default class LoginPage extends BasePage {
 
     itemsLocators = {
         'Next': '//span[@jsname="V67aGc" and text()="Next"]',
-        'sign_in': '#headingText span',
-        'email_input': this.#input('email'),
-        'password_input': this.#input('password'),
+        'signIn': '#headingText span',
+        'email': this.#input('email'),
+        'password': this.#input('password'),
         'profileIdentifier': 'div[jsname="bQIQze"]',
     };
 
@@ -16,9 +16,9 @@ export default class LoginPage extends BasePage {
     };
 
     async setValue(text, inputField) {
-        if (inputField === 'email_input') {
+        if (inputField === 'email') {
             return await $(this.#input('email')).setValue(text);
-        } else if (inputField === 'password_input') {
+        } else if (inputField === 'password') {
             return await $(this.#input('password')).setValue(text);
         };
     };

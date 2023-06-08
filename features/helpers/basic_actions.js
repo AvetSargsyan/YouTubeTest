@@ -9,11 +9,11 @@ const historyPage = new HistoryPage()
 export default class BasicActions {
     getPageObject(pageName) {
         switch (pageName) {
-            case 'base_page':
+            case 'basePage':
                 return basePage;
-            case 'login_page':
+            case 'loginPage':
                 return loginPage;
-            case 'history_page':
+            case 'historyPage':
                 return historyPage;
         };
     };

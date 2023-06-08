@@ -20,34 +20,34 @@ export default class BasePage {
     };
 
     itemsLocators = {
-        'sign_in': '//a[@aria-label="Sign in"]',
+        'signIn': '//a[@aria-label="Sign in"]',
         'header': 'div[class="style-scope ytd-masthead"][id="container"]',
-        'guide_menu_icon': 'button[aria-label="Guide"]',
+        'guideMenu': 'button[aria-label="Guide"]',
         'profile': 'button#avatar-btn',
-        'email_field': 'yt-formatted-string#email',
-        'logo_icon': 'ytd-topbar-logo-renderer[id="logo"]',
-        'search_field': 'input[id="search"]',
-        'search_button': 'button#search-icon-legacy',
-        'voice_button': 'button[aria-label="Search with your voice"]',
-        'create_button': 'button[aria-label="Create"]',
-        'notifications_button': 'button[aria-label="Guide"]',
-        'guide_bar': 'tp-yt-app-drawer#guide',
-        'home_label': this.#label('Home'),
-        'shorts_label': this.#label('Shorts'),
-        'subscriptions_label': this.#label('Subscriptions'),
-        'library_label': this.#label('Library'),
-        'history_label': this.#label('History'),
-        'watch_later_label': this.#label('Watch later'),
-        'liked_videos_label': this.#label('Liked videos'),
-        'video_content': 'div[class="style-scope ytd-rich-grid-renderer"][id="contents"]',
-        'any_video': this.#video(''),
-        'video_title': this.#video('title'),
-        'video_hover': `${this.#video('')}//div[@id="hover-overlays"]`,
-        'shorts_content': 'div[class^="style-scope ytd-rich-section"]',
-        'shorts_title': '//span[text()="Shorts" and @id="title"]',
-        'contents_header': 'div[id="chips-wrapper"]',
+        'shownEmail': 'yt-formatted-string#email',
+        'logo': 'ytd-topbar-logo-renderer[id="logo"]',
+        'search': 'input[id="search"]',
+        'Search': 'button#search-icon-legacy',
+        'SearchWithVoice': 'button[aria-label="Search with your voice"]',
+        'Create': 'button[aria-label="Create"]',
+        'Notifications': 'button[aria-label="Guide"]',
+        'guide': 'tp-yt-app-drawer#guide',
+        'Home': this.#label('Home'),
+        'Shorts': this.#label('Shorts'),
+        'Subscriptions': this.#label('Subscriptions'),
+        'Library': this.#label('Library'),
+        'History': 'a[href="/feed/history"][id]',//this.#label('History'),
+        'WatchLater': this.#label('Watch later'),
+        'LikedVideos': this.#label('Liked videos'),
+        'videos': 'div[class="style-scope ytd-rich-grid-renderer"][id="contents"]',
+        // 'any_video': this.#video(''),
+        'firstVideo': this.#video('title'),
+        // 'video_hover': `${this.#video('')}//div[@id="hover-overlays"]`,
+        'shorts': 'div[class^="style-scope ytd-rich-section"]',  // no use
+        // 'shorts_title': '//span[text()="Shorts" and @id="title"]',
+        'videoContentsHeader': 'div[id="chips-wrapper"]',
         'youtube': this.#url(''),
-        'video': this.#url('watch?'),
+        'choosedVideo': this.#url('watch?'),
         'history': this.#url('feed/history'),
     };
 
@@ -56,6 +56,8 @@ export default class BasePage {
     };
 
     async clickButton(buttonName) {
+        await $(this.itemsLocators[buttonName]).moveTo();
+
         return await $(this.itemsLocators[buttonName]).click({ force: true });
     };
 
