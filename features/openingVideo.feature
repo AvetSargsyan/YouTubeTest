@@ -33,24 +33,6 @@ Feature: The YouTube test with Cucumber + WebdriverIO
         | url                        | userEmail           | password   |
         | "https://www.youtube.com/" | "moxedaby@afia.pro" | "123!@#Aa" |
 
-    Scenario: Base page's test
-        Then Check "header" content is displayed in "base" page
-            And Check "logo" icon to be child of "header" content
-            And Check "guideMenu" icon to be child of "header" content
-            And Check "searchByText" input to be child of "header" content
-            And Check "search" button to be child of "header" content
-            And Check "searchWithVoice" button to be child of "header" content
-            And Check "create" button to be child of "header" content
-            And Check "notifications" button to be child of "header" content
-            And Check "profile" button to be child of "header" content
-        When Click on "guideMenu" button in "base" page
-        Then Check "home" label to be child of "guide" sidebar
-            And Check "shorts" label to be child of "guide" sidebar
-            And Check "subscriptions" label to be child of "guide" sidebar
-            And Check "library" label to be child of "guide" sidebar
-            And Check "history" label to be child of "guide" sidebar
-            And Check "watchLater" label to be child of "guide" sidebar
-            And Check "likedVideos" label to be child of "guide" sidebar
             
     Scenario: Video content's test
         Then Check "videos" content is displayed in "base" page

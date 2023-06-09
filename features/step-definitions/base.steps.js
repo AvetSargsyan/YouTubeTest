@@ -1,11 +1,13 @@
-import { Given, When, Then } from '@wdio/cucumber-framework'
+import { Given, When, Then } from '@wdio/cucumber-framework';
+import { expect as expectChai } from 'chai'
 import BasePage from '../pageobjects/base.page.js';
-import LoginPage from '../pageobjects/login.page.js';
 import BasicActions from '../helpers/basic_actions.js';
 
 const basePage = new BasePage();
-const loginPage = new BasePage();
 const basicActions = new BasicActions();
+
+let fontColor;
+let anyText;
 
 Given(/^Open "([^"]*)" page$/, async (url) => {
     await basePage.open(url);
@@ -25,12 +27,20 @@ Then(/^Check "([^"]*)" button is displayed in "([^"]*)" page$/, async (itemName,
     await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeDisplayed();
 });
 
+Then(/^Check "([^"]*)" label is displayed in "([^"]*)" page$/, async (itemName, pageName) => {
+    await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeDisplayed();
+});
+
 Then(/^Check "([^"]*)" content is displayed in "([^"]*)" page$/, async (itemName, pageName) => {
     await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeDisplayed();
 });
 
 Then(/^Check "([^"]*)" video is displayed in "([^"]*)" page$/, async (itemName, pageName) => { //History page
     await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeDisplayed();
+});
+
+Then(/^Check "([^"]*)" language option is exist in "([^"]*)" page$/, async (itemName, pageName) => {
+    await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toExist();
 });
 
 Then(/^Check "([^"]*)" is exist in "([^"]*)" page$/, async (itemName, pageName) => {
@@ -45,8 +55,24 @@ Then(/^Check "([^"]*)" button is clickable in "([^"]*)" page$/, async (itemName,
     await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeClickable();
 });
 
+Then(/^Check "([^"]*)" label is clickable in "([^"]*)" page$/, async (itemName, pageName) => {
+    await expect(basicActions.getPageObject(pageName).checkItem(itemName)).toBeClickable();
+});
+
 When(/^Click on "([^"]*)" button in "([^"]*)" page$/, async (buttonName, pageName) => {
     await basicActions.getPageObject(pageName).clickButton(buttonName)
+});
+
+When(/^Click on "([^"]*)" label in "([^"]*)" page$/, async (buttonName, pageName) => {
+    await basicActions.getPageObject(pageName).clickButton(buttonName)
+});
+
+When(/^Double click on "([^"]*)" label in "([^"]*)" page$/, async (buttonName, pageName) => {
+    await basicActions.getPageObject(pageName).doubleClickButton(buttonName)
+});
+
+When(/^Scroll to "([^"]*)" label$/, async (itemName) => {
+    await basePage.checkItem(itemName).scrollIntoView();
 });
 
 Then(/^Check "([^"]*)" is set in "([^"]*)" field in "([^"]*)" page$/, async (mail, fieldName, pageName) => {
@@ -77,6 +103,29 @@ Then(/^Check "([^"]*)" page is open$/, async (pageName) => {
     await expect(browser).toHaveUrlContaining(basePage.getUrl(pageName));
 });
 
+Given(/^"([^"]*)" page is open$/, async (pageName) => {
+    await expect(browser).toHaveUrlContaining(basePage.getUrl(pageName));
+});
+
 When(/^Maximize window$/, async () => {
     await browser.maximizeWindow();
 });
+
+When(/^Get "([^"]*)" font color$/, async (element) => {
+    fontColor = await basePage.getCSSProperty(element);
+});
+
+Then(/^Check "([^"]*)" title font color to be changed$/, async (itemName) => {
+    const expectedFontColor = fontColor.value === 'rgba(15,15,15,1)' ? 'rgba(241,241,241,1)' : 'rgba(15,15,15,1)';
+    const fontColorAfterInversion = await basePage.getCSSProperty(itemName);
+
+    expectChai(fontColorAfterInversion.value).to.equal(expectedFontColor);
+});
+
+Then(/^Check "([^"]*)" input placeholder text to be changed to "([^"]*)"$/, async (itemName, expectedText) => {
+    expect(await basePage.getPlaceholdersText(itemName)).toHaveText(expectedText);
+});
+
+// When(/^Pause$/, async () => {
+//     await browser.pause(5000)
+// })

@@ -3,10 +3,21 @@ export const config = {
     specs: [
         './features/**/*.feature'
     ],
+    suites: {
+        basePage: [
+            './features/basePage.feature',
+        ],
+        profileSettings: [
+            './features/profileSettings.feature',
+        ],
+        opeiningVideo: [
+            './features/openingVideo.feature',
+        ]
+    },
     exclude: [],
     maxInstances: 10,
     capabilities: [{
-        browserName: 'MicrosoftEdge' // or "firefox", "microsoftedge", "safari"
+        browserName: 'MicrosoftEdge',
     }],
     logLevel: 'trace',
     bail: 0,
@@ -14,7 +25,6 @@ export const config = {
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
-    // services: ['chromedriver'],
     services: [
         'edgedriver',
     ],

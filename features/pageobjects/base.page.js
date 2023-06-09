@@ -20,6 +20,8 @@ export default class BasePage {
         return url;
     };
 
+    #language = name => `//yt-formatted-string[text()="${name}"]`
+
     itemsLocators = {
         'signIn': '//a[@aria-label="Sign in"]',
         'header': 'div[class="style-scope ytd-masthead"][id="container"]',
@@ -45,6 +47,14 @@ export default class BasePage {
         'videoContentsHeader': 'div[id="chips-wrapper"]',
         'youtube': this.#url(''),
         'choosedVideo': this.#url('watch?'),
+        'account': '[aria-label="Account menu"]',
+        'pageMenu': '[class^="style-scope ytd-multi"][id="header"]',
+        'deviceTheme': '//div[text()="Appearance: Device theme"]',
+        'appearanceMenu': '//*[text()="Appearance"]',
+        'darkTheme': '//*[text()="Dark theme"]',
+        'language': this.#language('Language:'),
+        'chooseLanguage': this.#language('Choose your language'),
+        'russian': this.#language('Русский'),
     };
 
     async checkItem(name) {
@@ -55,8 +65,20 @@ export default class BasePage {
         return await $(this.itemsLocators[buttonName]).click({ force: true });
     };
 
+    async doubleClickButton(buttonName) {
+        return await $(this.itemsLocators[buttonName]).doubleClick({ force: true });
+    };
+
     async getText(name) {
         return await $(this.itemsLocators[name]).getText();
+    };
+
+    async getCSSProperty(name) {
+        return await $(this.itemsLocators[name]).getCSSProperty('color')
+    };
+
+    async getPlaceholdersText(name) {
+        return await $(this.itemsLocators[name]).getAttribute('placeholder');
     };
 
     getUrl(name) {
