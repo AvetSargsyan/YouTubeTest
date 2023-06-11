@@ -41,7 +41,7 @@ Feature: The YouTube test with Cucumber + WebdriverIO
             And Check "firstVideo" title is displayed in "base" page
             And Check "videoContentsHeader" content is displayed in "base" page
             And Check "firstVideo" video is clickable in "base" page
-        When Click on "firstVideo" video in "base" page
+        When Click on "firstVideo" video
 
         #Video page
         Then Check "choosedVideo" page is open

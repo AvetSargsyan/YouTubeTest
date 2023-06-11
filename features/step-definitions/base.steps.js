@@ -7,7 +7,6 @@ const basePage = new BasePage();
 const basicActions = new BasicActions();
 
 let fontColor;
-let anyText;
 
 Given(/^Open "([^"]*)" page$/, async (url) => {
     await basePage.open(url);
@@ -95,7 +94,7 @@ Then(/^Check "([^"]*)" button to be child of "([^"]*)" content$/, async (itemNam
     await expect(basePage.checkItem(containerName)).toHaveChildren(basePage.checkItem(itemName));
 });
 
-When(/^Click on "([^"]*)" video in "([^"]*)" page$/, async (buttonName, pageName) => {
+When(/^Click on "([^"]*)" video$/, async (buttonName) => {
     await basePage.clickButton(buttonName);
 });
 
@@ -111,7 +110,7 @@ When(/^Maximize window$/, async () => {
     await browser.maximizeWindow();
 });
 
-When(/^Get "([^"]*)" font color$/, async (element) => {
+When(/^Get "([^"]*)" title font color$/, async (element) => {
     fontColor = await basePage.getCSSProperty(element);
 });
 

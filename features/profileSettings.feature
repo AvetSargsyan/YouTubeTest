@@ -37,7 +37,7 @@ Feature: The YouTube test with Cucumber + WebdriverIO
         Given "youtube" page is open 
         Then Check "account" button is displayed in "base" page
             And Check "account" button is clickable in "base" page
-        When Get "firstVideo" font color
+        When Get "firstVideo" title font color
             And Double click on "account" label in "base" page
         Then Check "pageMenu" content is displayed in "base" page
             And Check "deviceTheme" label is displayed in "base" page
